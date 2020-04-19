@@ -66,10 +66,10 @@ public class ContactsCollection implements Serializable {
         return filteredContacts;
     }
 
-    public List<Contact> getContactsWithBlockedSms() {
+    public List<Contact> getContactsWithBlockedMessages() {
         ArrayList<Contact> filteredContacts = new ArrayList<Contact>();
         for(Contact contact : this.contacts) {
-            if(contact.hasSmsBlocked()) {
+            if(contact.hasMessagesBlocked()) {
                 filteredContacts.add(contact);
             }
         }

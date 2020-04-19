@@ -4,16 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SmsFragment">
+    tools:context=".ui.CallsFragment">
+
+    <ListView
+        android:id="@+id/messages_blocked_contacts_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/sms_text_view"
+        android:id="@+id/messages_empty_list_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empty_block_list"
+        android:textColor="@android:color/darker_gray"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

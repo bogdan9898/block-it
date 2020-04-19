@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
@@ -60,7 +61,6 @@ public class CallsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_calls, container, false);
-
 
         FloatingActionButton fab_contact = getActivity().findViewById(R.id.fab_contact);
         fab_contact.setOnClickListener(new View.OnClickListener() {
@@ -133,11 +133,9 @@ public class CallsFragment extends Fragment {
 
         this.blockedContacts = ContactsCollection.getInstance().getContactsWithBlockedCalls();
         if(blockedContacts.isEmpty()) {
-           getActivity().findViewById(R.id.empty_list_text).setVisibility(View.VISIBLE);
-//           getActivity().findViewById(R.id.empty_list_image).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.empty_list_text).setVisibility(View.VISIBLE);
         } else {
             getActivity().findViewById(R.id.empty_list_text).setVisibility(View.INVISIBLE);
-//            getActivity().findViewById(R.id.empty_list_image).setVisibility(View.INVISIBLE);
         }
 
         ListView listView = getActivity().findViewById(R.id.calls_blocked_contacts_list_view);
@@ -192,7 +190,7 @@ public class CallsFragment extends Fragment {
                         switch (which) {
                             case 0: // unblock calls
                                 blockedContacts.get(position).unblockCalls();
-                                Snackbar.make(getView(), "Phone number removed from blocked list", Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(getView(), "Phone number removed from blacklist", Snackbar.LENGTH_SHORT).show();
                                 onResume();
                                 break;
                             case 1: // clear logs

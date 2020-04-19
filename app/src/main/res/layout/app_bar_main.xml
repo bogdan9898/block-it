@@ -22,14 +22,6 @@
 
     <include layout="@layout/content_main" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/empty_list_image"-->
-<!--        android:layout_marginBottom="50dp"-->
-<!--        android:layout_width="88dp"-->
-<!--        android:layout_height="125dp"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        android:src="@drawable/ic_arrow_downward_24dp" />-->
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_number"
         android:layout_width="wrap_content"
@@ -72,7 +64,8 @@
         android:layout_marginBottom="38dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
-        android:alpha="0"/>
+        android:alpha="0"
+        app:layout_dodgeInsetEdges="bottom"/>
 
     <TextView
         android:id="@+id/textView_number"
@@ -85,6 +78,7 @@
         android:layout_marginBottom="38dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
-        android:alpha="0"/>
+        android:alpha="0"
+        app:layout_dodgeInsetEdges="bottom"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

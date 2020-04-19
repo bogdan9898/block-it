@@ -81,11 +81,11 @@ public class Contact implements Serializable {
         this.blockedState = this.blockedState & ~BLOCKED_CALLS;
     }
 
-    public void blockSms() {
+    public void blockMessages() {
         this.blockedState = this.blockedState | BLOCKED_SMS;
     }
 
-    public void unblockSms() {
+    public void unblockMessages() {
         this.blockedState = this.blockedState & ~BLOCKED_SMS;
     }
 
@@ -93,7 +93,7 @@ public class Contact implements Serializable {
         return (this.blockedState & BLOCKED_CALLS) != 0;
     }
 
-    public boolean hasSmsBlocked() {
+    public boolean hasMessagesBlocked() {
         return (this.blockedState & BLOCKED_SMS) != 0;
     }
 
