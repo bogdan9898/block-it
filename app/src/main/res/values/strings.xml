@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Block It</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Block it</string>
+    <string name="nav_header_subtitle">Proiect realizat de Istoc Bogdan - A6</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_calls">Phone calls</string>
+    <string name="menu_sms">Messages</string>
+
+    <string name="empty_block_list">It seems that nobody is bothering you right now\nTry blocking someone anyway!</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!--  Notifications config  -->
+    <string name="notification_channel_name">Block it notifications</string>
+    <string name="notification_channel_id">block_it</string>
+
+    <!-- Preference Titles -->
+    <string name="calls_header">Phone calls</string>
+    <string name="messages_header">Messages</string>
+
+    <!-- Calls Preferences -->
+    <string name="notify_call_title">Enable notifications</string>
+    <string name="notify_call_summary">Notify me when a call is blocked</string>
+
+    <string name="block_all_calls_title">Block all</string>
+    <string name="block_all_calls_summary">Block all incoming calls</string>
+
+    <string name="block_calls_unknown_numbers_title">Block unknown numbers</string>
+    <string name="block_calls_unknown_numbers_summary">Block incoming calls from unknown numbers</string>
+
+    <string name="block_calls_private_numbers_title">Block private numbers</string>
+    <string name="block_calls_private_numbers_summary">Block incoming calls from private numbers</string>
+
+    <!-- Messages Preferences -->
+    <string name="notify_message_title">Enable notifications</string>
+    <string name="notify_message_summary">Notify me when a message is blocked</string>
+
+    <string name="block_all_messages_title">Block all</string>
+    <string name="block_all_messages_summary">Block all messages</string>
+
+    <string name="block_messages_unknown_numbers_title">Block unknown numbers</string>
+    <string name="block_messages_unknown_numbers_summary">Block messages from unknown numbers</string>
+
+    <string name="block_messages_private_numbers_title">Block private numbers</string>
+    <string name="block_messages_private_numbers_summary">Block messages from private numbers</string>
+
+    <!-- Contacts collection save file name -->
+    <string name="contacts_filename">contacts.jser</string>
+
+    <!--  Fab tooltips  -->
+    <string name="textView_contact">Contacts</string>
+    <string name="textView_number">Phone number</string>
+
+</resources>

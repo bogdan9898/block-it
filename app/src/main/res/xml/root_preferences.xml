@@ -1,0 +1,61 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/calls_header"
+        app:icon="@drawable/ic_call_24dp">
+
+        <SwitchPreferenceCompat
+            app:key="notify_call"
+            app:title="@string/notify_call_title"
+            app:summary="@string/notify_call_summary"/>
+
+        <SwitchPreferenceCompat
+            app:key="block_all_calls"
+            app:title="@string/block_all_calls_title"
+            app:summary="@string/block_all_calls_summary"
+            app:disableDependentsState="true"/>
+
+        <SwitchPreferenceCompat
+            app:dependency="block_all_calls"
+            app:key="block_calls_unknown_numbers"
+            app:title="@string/block_calls_unknown_numbers_title"
+            app:summary="@string/block_calls_unknown_numbers_summary"/>
+
+        <SwitchPreferenceCompat
+            app:dependency="block_all_calls"
+            app:key="block_calls_private_numbers"
+            app:title="@string/block_calls_private_numbers_title"
+            app:summary="@string/block_calls_private_numbers_summary"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/messages_header"
+        app:icon="@drawable/ic_textsms_24dp">
+
+        <SwitchPreferenceCompat
+            app:key="notify_message"
+            app:title="@string/notify_message_title"
+            app:summary="@string/notify_message_summary"/>
+
+        <SwitchPreferenceCompat
+            app:key="block_all_messages"
+            app:title="@string/block_all_messages_title"
+            app:summary="@string/block_all_messages_summary"
+            app:disableDependentsState="true"/>
+
+        <SwitchPreferenceCompat
+            app:dependency="block_all_messages"
+            app:key="block_messages_unknown_numbers"
+            app:title="@string/block_messages_unknown_numbers_title"
+            app:summary="@string/block_messages_unknown_numbers_summary"/>
+
+        <SwitchPreferenceCompat
+            app:dependency="block_all_messages"
+            app:key="block_messages_private_numbers"
+            app:title="@string/block_messages_private_numbers_title"
+            app:summary="@string/block_messages_private_numbers_summary"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

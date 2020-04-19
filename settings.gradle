@@ -1,0 +1,2 @@
+rootProject.name='TPPA_block_it'
+include ':app'
