@@ -53,5 +53,6 @@
     <!--  Fab tooltips  -->
     <string name="textView_contact">Contacts</string>
     <string name="textView_number">Phone number</string>
+    <string name="add_message_filter">Add new message filter</string>
 
 </resources>

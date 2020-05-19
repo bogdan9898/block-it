@@ -30,15 +30,10 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class IncomingCallReceiver extends BroadcastReceiver {
     private static final String TAG = "IncomingCallReceiver";
-    static Context context;
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(IncomingCallReceiver.context == null) {
-            Log.d(TAG, "onReceive: Context has not been initialized");
-            return;
-        }
-
-        if(context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        if(context.checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
+            context.checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
 
@@ -48,7 +43,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
             String number = intent.getExtras().getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
             if(state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)) {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(IncomingCallReceiver.context);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
                 boolean show_notification = sharedPreferences.getBoolean("notify_call", true);
                 boolean block_all = sharedPreferences.getBoolean("block_all_calls", false);
                 boolean block_unknown = sharedPreferences.getBoolean("block_calls_unknown_numbers", false);
@@ -57,7 +52,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                 List<Contact> blockedContacts = ContactsCollection.getInstance().getContactsWithBlockedCalls();
                 int contactIndex = blockedContacts.indexOf(new Contact(number));
                 if(contactIndex == -1) {
-                    if(block_all || (block_unknown && isUnknown(number)) || (block_private && isPrivate(number))) {
+                    if(block_all || (block_unknown && isUnknown(context, number)) || (block_private && isPrivate(number))) {
                         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
                         try{
                             Method method = telephonyManager.getClass().getDeclaredMethod("getITelephony");
@@ -65,9 +60,8 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                             telephonyService = (ITelephony) method.invoke(telephonyManager);
                             if(number != null) {
                                 telephonyService.endCall();
-//                                Toast.makeText(context, "call ended from: " + number, Toast.LENGTH_SHORT).show();
                                 if(show_notification) {
-                                    showNotification(number);
+                                    showNotification(context, number);
                                 }
                             }
                         } catch (Exception e) {
@@ -84,7 +78,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
                         if(number != null) {
                             telephonyService.endCall();
                             if(show_notification) {
-                                showNotification(number);
+                                showNotification(context, number);
                             }
                         }
                     } catch (Exception e) {
@@ -105,15 +99,11 @@ public class IncomingCallReceiver extends BroadcastReceiver {
         }
     }
 
-    public static void setContext(Context context) {
-        IncomingCallReceiver.context = context;
-    }
-
-    public static boolean isPrivate(String number) {
+    public boolean isPrivate(String number) {
          return Integer.parseInt(number) < 0;
     }
 
-    public static boolean isUnknown(String number) {
+    public boolean isUnknown(Context context, String number) {
         Uri uri = Uri.withAppendedPath(
                 ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
                 Uri.encode(number));
@@ -137,7 +127,7 @@ public class IncomingCallReceiver extends BroadcastReceiver {
         return true;
     }
 
-    public static String getName(String number) {
+    public String getName(Context context, String number) {
         Uri uri = Uri.withAppendedPath(
                 ContactsContract.PhoneLookup.CONTENT_FILTER_URI,
                 Uri.encode(number));
@@ -160,8 +150,8 @@ public class IncomingCallReceiver extends BroadcastReceiver {
         return null;
     }
 
-    public static void showNotification(String number) {
-        String name = getName(number);
+    public void showNotification(Context context, String number) {
+        String name = getName(context, number);
         if(name == null) {
             NotificationHelper.showNotification(context, "New call blocked", "Call blocked from: " + number);
         } else {

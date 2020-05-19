@@ -36,6 +36,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class SmsFragment extends Fragment {
@@ -170,7 +171,7 @@ public class SmsFragment extends Fragment {
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(blockedContacts.get(position).toString());
-                String[] options = {"Unblock messages", "Clear logs"};
+                String[] options = {"Unblock messages", "Clear logs", "Messages filter"};
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                         getActivity(),
                         R.layout.custom_spinner_dropdown_item_lpadded,
@@ -189,9 +190,13 @@ public class SmsFragment extends Fragment {
                                 blockedContacts.get(position).clearSmsLogs();
                                 Snackbar.make(getView(), "Logs cleared successfully", Snackbar.LENGTH_SHORT).show();
                                 break;
+                            case 2: // messages filter
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                
+                                builder.create().show();
+                                break;
                             default:
                                 Snackbar.make(getView(), "Unknown option", Snackbar.LENGTH_SHORT).show();
-
                         }
                     }
                 });

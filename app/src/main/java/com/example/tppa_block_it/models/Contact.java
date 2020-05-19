@@ -20,6 +20,7 @@ public class Contact implements Serializable {
     private List<CallLog> callLogList;
     private List<SmsLog> smsLogList;
     private int blockedState;
+    private List<String> messagesFilter;
 
     public Contact(String number, String name) {
         this.number = number;
@@ -27,6 +28,7 @@ public class Contact implements Serializable {
         callLogList = new ArrayList<CallLog>();
         smsLogList = new ArrayList<SmsLog>();
         blockedState = 0;
+        messagesFilter = new ArrayList<String>();
     }
 
     public Contact(String number) {
@@ -63,6 +65,14 @@ public class Contact implements Serializable {
 
     public void setSmsLogList(List<SmsLog> smsLogList) {
         this.smsLogList = smsLogList;
+    }
+
+    public List<String> getMessagesFilter() {
+        return messagesFilter;
+    }
+
+    public void setMessagesFilter(List<String> messagesFilter) {
+        this.messagesFilter = messagesFilter;
     }
 
     public void addCallLog(CallLog callLog) {
@@ -103,6 +113,14 @@ public class Contact implements Serializable {
 
     public void clearSmsLogs() {
         this.smsLogList.clear();
+    }
+
+    public void addMessageFilter(String string) {
+        this.messagesFilter.add(string);
+    }
+    
+    public void removeMessageFilter(String string) {
+        this.messagesFilter.remove(string);
     }
 
     @Override
